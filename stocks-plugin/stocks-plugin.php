@@ -1,27 +1,12 @@
 <?php
 
-include_once('includes/source.inc.php');
-include_once('stock.class.php');
+$url = 'https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=IBM&apikey=7WXW1VEACXC3XYUE';
 
-$functions = array(
-  'TIME_SERIES_INTRADAY',
-  'TIME_SERIES_DAILY',
-  'TIME_SERIES_WEEKLY',
-  'TIME_SERIES_MONTHLY'
-);
+//Use file_get_contents to GET the URL in question.
+$contents = file_get_contents($url);
 
-$intevals = array(
-  '1min',
-  '5min',
-  '15min',
-  '30min',
-  '60min'
-);
-
-    $function = $functions[0];
-    $interval = $intevals[3];
-    $symbol = 'IBM';
-    print_r(getStockFunction($function, $symbol, $interval));
-    //print_r(getStockInfo($symbol));
-    $stock = new Stock ($symbol);
-    echo $stock->getOpen($function);
+//If $contents is not a boolean FALSE value.
+if($contents !== false){
+    //Print out the contents.
+    echo $contents;
+}
